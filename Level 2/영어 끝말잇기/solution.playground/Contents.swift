@@ -8,15 +8,22 @@ func solution(_ n:Int, _ words:[String]) -> [Int] {
     var isError = 0
     for i in words {
         
+        // 중복 체크
         arr.forEach{ if $0.filter{ $0 == i }.count != 0 { isError = 1 } }
         
+        // 단어 길이 체크
+        if i.count == 1 {
+            isError = 1
+            print("it's short")
+        }
+        
+        // 단어 첫글자 체크
         if tern != 0, person == 0 {
             if arr[n-1][tern-1].last != i.first {
                 isError = 1
             }
         } else if tern != 0 {
             if arr[person-1][tern].last != i.first {
-                print("오답")
                 isError = 1
             }
         }
@@ -25,8 +32,6 @@ func solution(_ n:Int, _ words:[String]) -> [Int] {
         
         arr[person][tern] = i
         person += 1
-        
-        print(arr)
         
         if person % n == 0 {
             person = 0
@@ -37,5 +42,6 @@ func solution(_ n:Int, _ words:[String]) -> [Int] {
     return isError == 0 ? [0,0] : [person + 1,tern + 1]
 }
 
-var arr = ["hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"]
-solution(5, arr)
+var arr = ["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"]
+solution(3, arr)
+solution(5, ["hello", "observe", "effect", "take", "either", "recognize", "encourage", "e", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"])
