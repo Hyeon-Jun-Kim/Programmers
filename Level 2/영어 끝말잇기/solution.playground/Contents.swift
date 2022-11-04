@@ -14,7 +14,6 @@ func solution(_ n:Int, _ words:[String]) -> [Int] {
         // 단어 길이 체크
         if i.count == 1 {
             isError = 1
-            print("it's short")
         }
         
         // 단어 첫글자 체크
