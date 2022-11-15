@@ -1,15 +1,17 @@
-import UIKit
+import Foundation
+
 func solution(_ s:String) -> Int{
-     var STK = [Character]()
-     var arr = Array(s)
+    var arr = Array(s)
+    var result = [Character]()
+    
+    for i in arr {
+        if result.isEmpty { result.append(i) }
+        else {
+            if result.last == i {result.removeLast()}
+            else { result.append(i) }
+        }
+    }
 
-     for i in arr.indices {
-         if STK.isEmpty { STK.append(arr[i]) }
-         else {
-             if STK.last! == arr[i] { STK.removeLast() }
-             else { STK.append(arr[i]) }
-         }
-     }
-
-     return STK.isEmpty ? 1 : 0
+    return result.isEmpty ? 1 : 0
 }
+
